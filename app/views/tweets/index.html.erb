@@ -1,2 +1,14 @@
-<h1>Tweets#index</h1>
-<p>Find me in app/views/tweets/index.html.erb</p>
+
+
+<%= form_with model: @tweet do |form| %>
+  <div>
+    <%= form.label :tweet %><br>
+    <%= form.text_field :body %>
+  </div>
+
+
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
