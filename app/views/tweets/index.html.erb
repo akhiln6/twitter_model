@@ -12,3 +12,15 @@
     <%= form.submit %>
   </div>
 <% end %>
+
+<%= button_to "logout", destroy_user_session_path, method: :delete%>
+
+<ul>
+  <% @tweets.each do |tweet| %>
+    <li>
+      <%= tweet.body %>
+    </li>
+  <% end %>  
+</ul>
+
+

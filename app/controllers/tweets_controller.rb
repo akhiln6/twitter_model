@@ -1,11 +1,12 @@
 class TweetsController < ApplicationController
   def index
     @tweet = Tweet.new
-    @tweets = Tweet.all.order(created_at: :asc)
+    @tweets = Tweet.all
+    #order(created_at: :asc)
   end
 
   def create 
-    @tweet = Tweet.new(tweet_params)
+    @tweet = current_user.tweets.new(tweet_params)
     
       if @tweet.save
         redirect_to root_path
