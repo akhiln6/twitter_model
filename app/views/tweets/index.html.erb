@@ -11,7 +11,10 @@
       <%= tweet.user.email%> <br>  
       <%= tweet.body %><br>
       <%= link_to "Edit", edit_tweet_path(tweet) %><br>
-    
+      <%= link_to "Destroy", tweet_path(tweet), data: {
+                    turbo_method: :delete,
+                    turbo_confirm: "Are you sure?"
+                  } %><br>
   <% end %>  
 
 
