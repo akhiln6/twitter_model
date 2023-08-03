@@ -1,26 +1,18 @@
+<h1><%= current_user.email%></h1>
+<%= render "form", tweet: @tweet %>
 
-
-<%= form_with model: @tweet do |form| %>
-  <div>
-    <%= form.label :tweet %><br>
-    <%= form.text_field :body %>
-  </div>
-
-
-
-  <div>
-    <%= form.submit %>
-  </div>
-<% end %>
 
 <%= button_to "logout", destroy_user_session_path, method: :delete%>
 
-<ul>
+
   <% @tweets.each do |tweet| %>
-    <li>
-      <%= tweet.body %>
-    </li>
+
+    
+      <%= tweet.user.email%> <br>  
+      <%= tweet.body %><br>
+      <%= link_to "Edit", edit_tweet_path(tweet) %><br>
+    
   <% end %>  
-</ul>
+
 
 
