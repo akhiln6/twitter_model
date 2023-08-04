@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_03_094602) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_04_040419) do
   create_table "tweets", force: :cascade do |t|
     t.text "body"
     t.integer "user_id", null: false
@@ -28,6 +28,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_03_094602) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "firstname"
+    t.string "lastname"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
