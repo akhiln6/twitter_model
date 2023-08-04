@@ -7,8 +7,11 @@
 <% else %>
   <%= button_to "Sign in", new_user_session_path %> 
 <% end %>
+<%= link_to "edit sign up form", edit_user_registration_path %>
 
-<h1><%= current_user.email%></h1>
+
+<h1><%= current_user&.firstname.to_s + " " + current_user&.lastname.to_s %></h1>
+
 
 
 
@@ -21,7 +24,9 @@
   <% @tweets.each do |tweet| %>
 
     
-      <%= tweet.user.email%> <br>  
+      <%= tweet.user.firstname %>  
+      <%= tweet.user.lastname %>
+      <%= tweet.user.email %> <br>  
       <%= tweet.body %><br>
       <%= link_to "Edit", edit_tweet_path(tweet) %><br>
       <%= link_to "Destroy", tweet_path(tweet), data: {
