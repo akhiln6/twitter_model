@@ -2,7 +2,16 @@ class TweetsController < ApplicationController
   def index
     @tweet = Tweet.new
     @tweets = Tweet.all
+    
     #order(created_at: :asc)
+  end  
+  def show
+    @tweet = Tweet.find(params[:id])
+
+  end
+
+  def new
+    @tweet = Tweet.new
   end
 
   def create 
