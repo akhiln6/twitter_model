@@ -61,7 +61,15 @@
                     turbo_method: :delete,
                     turbo_confirm: "Are you sure?"
                   } %><br>
-      <%= link_to "comment", tweet_path(tweet) %> <br>           
+      <%= link_to " add comment", tweet_path(tweet) %> <br> 
+      <% tweet.comments.each do |comment| %>
+        <p>
+         
+         <%= comment.user.firstname %>
+         <%= comment.user.lastname %><span>:</span>
+         <%= comment.body %>
+        </p>
+      <% end %>        
   <% end %>  
 
 
