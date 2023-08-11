@@ -32,14 +32,18 @@
       <%= link_to "Destroy", tweet_path(tweet), data: {
                     turbo_method: :delete,
                     turbo_confirm: "Are you sure?"
-                  } %><
+                  } %>
       <%= link_to " add comment", tweet_path(tweet) %> <br> 
       <% tweet.comments.each do |comment| %>
         <p>
          
          <%= comment.user.firstname %>
          <%= comment.user.lastname %><span>:</span>
-         <%= comment.body %>
+         <%= comment.body %> <br>
+         <%= link_to "Destroy", tweet_comment_path(comment.tweet.id, comment), data: {
+                    turbo_method: :delete,
+                    turbo_confirm: "Are you sure?"
+                  } %>
         </p>
       <% end %>        
   <% end %>  

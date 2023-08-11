@@ -10,9 +10,14 @@ class CommentsController < ApplicationController
 
     @comment = @tweet.comments.create(comment_params)
     redirect_to root_path
+  end
 
-		
-	end
+  def destroy
+    # @tweet = Tweet.find(params[:tweet_id])
+    @comment = current_user.comments.find(params[:id])
+    @comment.destroy
+    redirect_to root_path
+  end
 
 	private
 	def comment_params
