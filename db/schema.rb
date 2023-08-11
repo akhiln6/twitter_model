@@ -10,23 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_11_060047) do
-  create_table "comments", force: :cascade do |t|
-    t.string "title", limit: 50, default: ""
-    t.text "comment"
-    t.string "commentable_type"
-    t.integer "commentable_id"
-    t.integer "user_id"
-    t.string "role", default: "comments"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["commentable_id"], name: "index_comments_on_commentable_id"
-    t.index ["commentable_type", "commentable_id"], name: "index_comments_on_commentable"
-    t.index ["commentable_type"], name: "index_comments_on_commentable_type"
-    t.index ["user_id"], name: "index_comments_on_different_user_id"
-    t.index ["user_id"], name: "index_comments_on_user_id"
-  end
-
+ActiveRecord::Schema[7.0].define(version: 2023_08_11_052920) do
   create_table "tweets", force: :cascade do |t|
     t.text "body"
     t.integer "user_id", null: false

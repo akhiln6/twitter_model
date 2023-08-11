@@ -1,0 +1,11 @@
+<h2>Add a comment</h2>
+<%= form_with(model: @tweet, url: tweet_comments_path, method: "post") do |form|
+  
+  
+    <%= form.label :comment %>
+    <%= form.text_area :comment %>
+  
+  
+    <%= form.submit %>
+  
+<% end %>
