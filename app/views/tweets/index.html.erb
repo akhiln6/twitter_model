@@ -32,7 +32,15 @@
       <%= link_to "Destroy", tweet_path(tweet), data: {
                     turbo_method: :delete,
                     turbo_confirm: "Are you sure?"
-                  } %>
+                  } %><br>
+
+      <%= button_to "Like", upvote_tweet_path(tweet), method: :put %> 
+      <p>Likes: <%= tweet.get_upvotes.size %></p> 
+      <%= button_to "Dislike", downvote_tweet_path(tweet), method: :put %>
+      <p>Dislike: <%= tweet.get_downvotes.size %></p>
+
+
+
       <%= link_to " add comment", tweet_path(tweet) %> <br> 
       <% tweet.comments.each do |comment| %>
         <p>

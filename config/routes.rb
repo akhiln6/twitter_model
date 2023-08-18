@@ -2,6 +2,10 @@ Rails.application.routes.draw do
   devise_for :users
   #get 'tweets/index'
   resources :tweets do
+    member do
+      put "upvote", to: "tweets#upvote"
+      put "downvote", to: "tweets#downvote"
+    end
     resources :comments
   end
   root "tweets#index"
