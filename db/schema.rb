@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_11_142737) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_21_105631) do
   create_table "comments", force: :cascade do |t|
     t.text "body"
     t.integer "user_id", null: false
@@ -26,6 +26,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_11_142737) do
     t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "retweeted_tweet_id"
+    t.index ["retweeted_tweet_id"], name: "index_tweets_on_retweeted_tweet_id"
     t.index ["user_id"], name: "index_tweets_on_user_id"
   end
 
