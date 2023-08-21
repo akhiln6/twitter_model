@@ -3,8 +3,7 @@ Rails.application.routes.draw do
   #get 'tweets/index'
   resources :tweets do
     member do
-      put "upvote", to: "tweets#upvote"
-      put "downvote", to: "tweets#downvote"
+      put "vote", to: "tweets#vote"
     end
     resources :comments
   end

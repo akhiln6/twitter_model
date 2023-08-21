@@ -34,9 +34,9 @@
                     turbo_confirm: "Are you sure?"
                   } %><br>
 
-      <%= button_to "Like", upvote_tweet_path(tweet), method: :put %> 
+      <%= button_to like_dislike_button_text(tweet), vote_tweet_path(tweet), method: :put %>
+
       <p>Likes: <%= tweet.get_upvotes.size %></p> 
-      <%= button_to "Dislike", downvote_tweet_path(tweet), method: :put %>
       <p>Dislike: <%= tweet.get_downvotes.size %></p>
 
 

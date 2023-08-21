@@ -46,15 +46,15 @@ class TweetsController < ApplicationController
     redirect_to root_path
   end
 
-  def upvote
-    @tweet = Tweet.find(params[:id])
-    @tweet.upvote_by current_user
-    redirect_to root_path
-  end
 
-  def downvote
+
+  def vote
     @tweet = Tweet.find(params[:id])
-    @tweet.downvote_by current_user
+    if @tweet.voted_up_by?(current_user)
+      @tweet.downvote_by(current_user)
+    else
+      @tweet.upvote_by(current_user)
+    end
     redirect_to root_path
   end
   
