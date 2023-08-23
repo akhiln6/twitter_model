@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :tweets do
     member do
       put "vote", to: "tweets#vote"
+      post "retweet", to: "tweets#retweet"
     end
     resources :comments
   end

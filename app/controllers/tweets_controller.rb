@@ -57,6 +57,17 @@ class TweetsController < ApplicationController
     end
     redirect_to root_path
   end
+
+  def retweet
+    @tweet = Tweet.find(params[:id])
+    @retweet = current_user.tweets.create(body:@tweet.body,retweeted_tweet_id: @tweet.id)
+
+    
+
+    redirect_to root_path
+  end
+
+  
   
 
   private

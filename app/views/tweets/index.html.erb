@@ -21,7 +21,7 @@
 <%# <%= button_to "logout", destroy_user_session_path, method: :delete%> 
 
 
-  <% @tweets.each do |tweet| %>
+  <% @tweets.where(retweeted_tweet_id: nil).each do |tweet| %>
 
     
       <%= tweet.user.firstname %>  
@@ -39,7 +39,9 @@
       <p>Likes: <%= tweet.get_upvotes.size %></p> 
       <p>Dislike: <%= tweet.get_downvotes.size %></p>
 
-
+      <% if user_signed_in? && tweet.user_id != current_user.id %>
+      <%= button_to "Retweet", retweet_tweet_path(tweet), method: :post %>
+      <% end %>
 
       <%= link_to " add comment", tweet_path(tweet) %> <br> 
       <% tweet.comments.each do |comment| %>
@@ -53,8 +55,55 @@
                     turbo_confirm: "Are you sure?"
                   } %>
         </p>
-      <% end %>        
-  <% end %>  
+      <% end %>  
+
+  <% end %> 
+
+  <% @tweets.where.not(retweeted_tweet_id: nil).each do |tweet| %>
+
+      <p><b>Retweeted by:</b>
+      <%= tweet.user.firstname %>  
+      <%= tweet.user.lastname %>
+      <%= tweet.user.email %> </p><br> 
+      <p><b>from tweet of</b>
+      <%= tweet.tweet.user.firstname %>
+      <%= tweet.tweet.user.lastname %></p><br>
+      <%= tweet.body %><br>
+     
+      <%= link_to "Edit", edit_tweet_path(tweet) %>
+      <%= link_to "Destroy", tweet_path(tweet), data: {
+                    turbo_method: :delete,
+                    turbo_confirm: "Are you sure?"
+                  } %><br>
+
+      <%= button_to like_dislike_button_text(tweet), vote_tweet_path(tweet), method: :put %>
+
+      <p>Likes: <%= tweet.get_upvotes.size %></p> 
+      <p>Dislike: <%= tweet.get_downvotes.size %></p>
+
+      <% if user_signed_in? && tweet.user_id != current_user.id %>
+      <%= button_to "Retweet", retweet_tweet_path(tweet), method: :post %>
+      <% end %>
+
+      <%= link_to " add comment", tweet_path(tweet) %> <br> 
+      <% tweet.comments.each do |comment| %>
+        <p>
+         
+         <%= comment.user.firstname %>
+         <%= comment.user.lastname %><span>:</span>
+         <%= comment.body %> <br>
+         <%= link_to "Destroy", tweet_comment_path(comment.tweet.id, comment), data: {
+                    turbo_method: :delete,
+                    turbo_confirm: "Are you sure?"
+                  } %>
+        </p>
+      <% end %>  
+
+  <% end %> 
+  
+   
+
+
 
 
 
