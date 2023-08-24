@@ -20,7 +20,9 @@
           <%= current_user&.firstname.to_s + " " + current_user&.lastname.to_s %>
         </li>
         <li class="nav-item">
-          <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+          
+            <%= button_to "profile", profile_path(current_user.id), method: :get %>
+           
         </li>
       </ul>
     </div>

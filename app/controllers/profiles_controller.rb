@@ -1,5 +1,12 @@
 class ProfilesController < ApplicationController
-  def show
-    
+
+  def index
+   
   end
+
+  def show
+    @profile = User.find(params[:id])
+    @profiles = User.all.where(email:current_user.email)
+  end
+
 end
