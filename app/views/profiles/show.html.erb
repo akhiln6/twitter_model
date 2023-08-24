@@ -2,9 +2,11 @@
 <%= @profile.lastname %><br>
 <p>email: <%= @profile.email %><br></p>
 <p>Tweets: </p>
-<% count=1 %>
 <% @profile.tweets.each do |tmp| %>
-	<p><%= count %>)	<%= tmp.body %></p><br>
-	<% count += 1  %>	
+	<% if tmp.retweeted_tweet_id.nil? %>
+		<p>Original tweet: <%= tmp.body %> </p>
+	<% else %>
+		<p>Retweeted tweet: <%= tmp.body %> </p>
+	<% end %>		
 <% end %>	
 
