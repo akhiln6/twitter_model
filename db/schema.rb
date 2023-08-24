@@ -65,3 +65,4 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_21_105631) do
   add_foreign_key "comments", "users"
   add_foreign_key "tweets", "users"
 end
+     
