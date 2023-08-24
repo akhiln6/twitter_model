@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   # get 'profiles/show'
   devise_for :users
-  resources :profiles
+  resource :profile
   resources :tweets do
     member do
       put "vote", to: "tweets#vote"
