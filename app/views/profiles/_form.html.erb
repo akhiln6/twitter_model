@@ -1,0 +1,13 @@
+<%= form_with model: profile, url: profile_path, method: :post  do |form| %>
+  <div>
+    <%= form.label :mobilenumber %><br>
+    <%= form.text_field :mobilenumber %>
+  </div>
+  <div>
+    <%= form.label :address %><br>
+    <%= form.text_area :address %>
+  </div>
+	<div>
+    <%= form.submit %>
+  </div>
+<% end %>
