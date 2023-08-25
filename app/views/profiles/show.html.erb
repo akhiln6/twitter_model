@@ -1,3 +1,12 @@
 <%= current_user.firstname %>
 <%= current_user.lastname %><br>
+<p>Email: <%= current_user.email %><p><br>
+
+<% current_user.tweets.each do |tmp| %>
+	<% if tmp.retweeted_tweet_id.nil? %>
+		<p>Original tweet: <%= tmp.body %> </p>
+	<% else %>
+		<p>Retweeted tweet: <%= tmp.body %> </p>
+	<% end %> 
+<% end %> 
 
