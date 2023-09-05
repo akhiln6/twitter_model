@@ -10,6 +10,13 @@
 <% else %>
   <p>No profile information available.</p>
 <% end %>
+<%= link_to "Edit", edit_profile_path %>
+<%= link_to "Destroy", profile_path, data: {
+                    turbo_method: :delete,
+                    turbo_confirm: "Are you sure?"
+                  } %><br>
+
+
 
 <% current_user.tweets.each do |tmp| %>
 	<% if tmp.retweeted_tweet_id.nil? %>

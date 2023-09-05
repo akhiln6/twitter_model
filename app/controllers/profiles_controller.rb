@@ -9,6 +9,12 @@ class ProfilesController < ApplicationController
     @profile = Profile.new
     @profile1 = current_user.profile
   end
+
+  def edit
+    @profile = current_user.profile
+  end
+
+
   
   def new
     @profile = Profile.new
@@ -17,9 +23,26 @@ class ProfilesController < ApplicationController
   def create 
     @profile = current_user.build_profile(profile_params)
     if @profile.save
-      redirect_to root_path
+      redirect_to profile_path
     end
   
+  end
+
+  def update
+    @profile = current_user.profile
+
+    if @profile.update(profile_params)
+      redirect_to profile_path
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    @profile = current_user.profile
+    @profile.destroy
+
+    redirect_to root_path
   end
 
 
