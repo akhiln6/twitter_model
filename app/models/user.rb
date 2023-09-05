@@ -6,6 +6,7 @@ class User < ApplicationRecord
 
   has_many :tweets
   has_many :comments
+  has_one :profile
 
   acts_as_voter
 
