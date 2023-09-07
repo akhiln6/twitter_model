@@ -1,10 +1,14 @@
 
 <%= form_with model: tweet do |form| %>
   <div>
-    <%= form.label :tweet %><br>
+    <%= form.label :body, 'tweet' %><br>
     <%= form.text_field :body %>
   </div>
 
+  <div>
+    <%= form.label :tweet_file, 'Upload File' %>
+    <%= form.file_field :tweet_file %>
+  </div>
 
 
   <div>
