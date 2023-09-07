@@ -7,4 +7,6 @@ class Tweet < ApplicationRecord
   belongs_to :tweet, foreign_key: "retweeted_tweet_id", optional: true
 
   acts_as_votable
+
+  has_one_attached :tweet_file
 end

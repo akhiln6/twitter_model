@@ -1,0 +1,11 @@
+<%= form_with(model: tweet) do |form| %>
+  
+  <div>
+    <%= form.label :tweet_file, 'Upload File' %>
+    <%= form.file_field :tweet_file %>
+  </div>
+
+  <div>
+    <%= form.submit 'Create Tweet' %>
+  </div>
+<% end %>

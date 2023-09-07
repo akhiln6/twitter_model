@@ -15,19 +15,32 @@
 
 
 
-<%= render "form", tweet: @tweet %>
+<%= render "form", tweet: @tweet %><br>
+<%= render "form1", tweet: @tweet %><br>
+
 
 
 <%# <%= button_to "logout", destroy_user_session_path, method: :delete%> 
 
 
-  <% @tweets.where(retweeted_tweet_id: nil).each do |tweet| %>
+  <% @tweets.where(retweeted_tweet_id: nil).order(:asc).each do |tweet| %>
 
     
       <%= tweet.user.firstname %>  
       <%= tweet.user.lastname %>
       <%= tweet.user.email %> <br>  
       <%= tweet.body %><br>
+
+      <% if tweet.tweet_file.attached? %>
+        <% if tweet.tweet_file.image? %>
+          <%= image_tag tweet.tweet_file %>
+        <% end %>  
+      <% else %>
+        <p>No file attached.</p>
+      <% end %><br>
+
+
+
       <%= link_to "Edit", edit_tweet_path(tweet) %>
       <%= link_to "Destroy", tweet_path(tweet), data: {
                     turbo_method: :delete,
