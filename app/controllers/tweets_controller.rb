@@ -19,6 +19,8 @@ class TweetsController < ApplicationController
     @tweet = current_user.tweets.new(tweet_params)
     
       if @tweet.save
+        
+        @tweet.tweet_file.attach(params[:tweet][:tweet_file])
         redirect_to root_path
       else
         redirect_to root_path
@@ -62,21 +64,28 @@ class TweetsController < ApplicationController
   def retweet
     @tweet = Tweet.find(params[:id])
     @retweet = current_user.tweets.create(body:@tweet.body,retweeted_tweet_id: @tweet.id)
-
-    
-
     redirect_to root_path
   end
 
-  
-  
+  def download
+    @tweet = Tweet.find(params[:id])
+    if @tweet.tweet_file.attached?
+      file = @tweet.tweet_file.download
+      # Sanitize the filename to remove invalid characters
+      sanitized_filename = @tweet.tweet_file.blob.filename.to_s.gsub(/[^0-9A-Za-z.\-]/, '_')
+      
+      send_file file, filename: sanitized_filename, disposition: 'attachment'
+    else
+      redirect_to root_path, alert: 'File not found.'
+    end
+  end
+
 
   private
 
   def tweet_params
     params.require(:tweet).permit(:body, :tweet_file)
   end
-
 
 
 

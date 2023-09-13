@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     member do
       put "vote", to: "tweets#vote"
       post "retweet", to: "tweets#retweet"
+      get "download", to: "tweets#download"
     end
     resources :comments
   end

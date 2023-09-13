@@ -34,10 +34,13 @@
       <% if tweet.tweet_file.attached? %>
         <% if tweet.tweet_file.image? %>
           <%= image_tag tweet.tweet_file %>
-        <% end %>  
+        <% else %>
+          <p>File type: <%= tweet.tweet_file.content_type %></p>
+          <%= link_to tweet.tweet_file.filename, rails_blob_path(tweet.tweet_file, disposition: 'attachment') %>
+        <% end %>
       <% else %>
         <p>No file attached.</p>
-      <% end %><br>
+      <% end %>
 
 
 
