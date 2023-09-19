@@ -85,6 +85,18 @@
       <%= tweet.tweet.user.firstname %>
       <%= tweet.tweet.user.lastname %></p><br>
       <%= tweet.body %><br>
+
+      <% if tweet.tweet_file.attached? %>
+        <% if tweet.tweet_file.image? %>
+          <%= image_tag tweet.tweet_file %>
+        <% else %>
+          <p>File type: <%= tweet.tweet_file.content_type %></p>
+          <%= link_to tweet.tweet_file.filename, rails_blob_path(tweet.tweet_file, disposition: 'attachment') %>
+        <% end %>
+      <% else %>
+        <p>No file attached.</p>
+      <% end %>
+
      
       <%= link_to "Edit", edit_tweet_path(tweet) %>
       <%= link_to "Destroy", tweet_path(tweet), data: {
