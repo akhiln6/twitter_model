@@ -24,6 +24,10 @@
 		<%if tmp.tweet_file.attached? %> 	
 			<% if tmp.tweet_file.image? %>
 				<%= image_tag tmp.tweet_file%>
+			<% elsif tmp.tweet_file.video? %>
+        <%= video_tag(url_for(tmp.tweet_file), controls: "") %>  
+      <% elsif tmp.tweet_file.audio? %>
+        <%= audio_tag(url_for(tmp.tweet_file), controls: "") %> 	
 			<% else %>
 				<p>File type: <%= tmp.tweet_file.content_type %></p>
 				<%= link_to tmp.tweet_file.filename, rails_blob_path(tmp.tweet_file, disposition: 'attachment') %> 	
@@ -36,7 +40,11 @@
 		<%if tmp.tweet_file.attached? %> 
 			<% if tmp.tweet_file.image? %>
 				<%= image_tag tmp.tweet_file%>
-			<% else %>
+			<% elsif tmp.tweet_file.video? %>
+        <%= video_tag(url_for(tmp.tweet_file), controls: "") %>  
+      <% elsif tmp.tweet_file.audio? %>
+        <%= audio_tag(url_for(tmp.tweet_file), controls: "") %> 
+      <% else %>
 				<p>File type: <%= tmp.tweet_file.content_type %></p>
 				<%= link_to tmp.tweet_file.filename, rails_blob_path(tmp.tweet_file, disposition: 'attachment') %>
 			<% end %>	
