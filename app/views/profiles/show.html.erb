@@ -21,8 +21,28 @@
 <% current_user.tweets.each do |tmp| %>
 	<% if tmp.retweeted_tweet_id.nil? %>
 		<p>Original tweet: <%= tmp.body %> </p>
+		<%if tmp.tweet_file.attached? %> 	
+			<% if tmp.tweet_file.image? %>
+				<%= image_tag tmp.tweet_file%>
+			<% else %>
+				<p>File type: <%= tmp.tweet_file.content_type %></p>
+				<%= link_to tmp.tweet_file.filename, rails_blob_path(tmp.tweet_file, disposition: 'attachment') %> 	
+			<% end %>
+		<% else %>
+		  <p>	No file attached </p>
+		<% end %>	
 	<% else %>
 		<p>Retweeted tweet: <%= tmp.body %> </p>
+		<%if tmp.tweet_file.attached? %> 
+			<% if tmp.tweet_file.image? %>
+				<%= image_tag tmp.tweet_file%>
+			<% else %>
+				<p>File type: <%= tmp.tweet_file.content_type %></p>
+				<%= link_to tmp.tweet_file.filename, rails_blob_path(tmp.tweet_file, disposition: 'attachment') %>
+			<% end %>	
+		<% else %>
+			<p> No file attached </p>	
+		<% end %>	
 	<% end %> 
 <% end %> 
 

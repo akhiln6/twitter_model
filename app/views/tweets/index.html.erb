@@ -34,6 +34,10 @@
       <% if tweet.tweet_file.attached? %>
         <% if tweet.tweet_file.image? %>
           <%= image_tag tweet.tweet_file %>
+        <% elsif tweet.tweet_file.video? %>
+          <%= video_tag(url_for(tweet.tweet_file), controls: "") %>  
+        <% elsif tweet.tweet_file.audio? %>
+          <%= audio_tag(url_for(tweet.tweet_file), controls: "") %>  
         <% else %>
           <p>File type: <%= tweet.tweet_file.content_type %></p>
           <%= link_to tweet.tweet_file.filename, rails_blob_path(tweet.tweet_file, disposition: 'attachment') %>
