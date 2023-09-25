@@ -7,6 +7,9 @@
 <% if @profile1 %>
 	<p>mobile number: <%= @profile1.mobilenumber %></p><br>
 	<p>address: <%= @profile1.address %></p>
+	<% if @profile1.profile_image? %>
+		<%= image_tag(@profile1.profile_image.url) %>
+	<% end %>	
 <% else %>
   <p>No profile information available.</p>
 <% end %>

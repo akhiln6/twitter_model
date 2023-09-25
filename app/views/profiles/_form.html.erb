@@ -7,6 +7,10 @@
     <%= form.label :address %><br>
     <%= form.text_area :address %>
   </div>
+  <div>
+    <%= form.label :profile_image, 'Profile Image' %>
+    <%= form.file_field :profile_image, accept: 'image/*' %>
+  </div>
 	<div>
     <%= form.submit %>
   </div>

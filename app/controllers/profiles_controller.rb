@@ -52,7 +52,7 @@ class ProfilesController < ApplicationController
   private
 
   def profile_params
-    params.require(:profile).permit(:mobilenumber, :address).merge(user_id: current_user.id)
+    params.require(:profile).permit(:mobilenumber, :address, :profile_image).merge(user_id: current_user.id)
   end
 
 end
