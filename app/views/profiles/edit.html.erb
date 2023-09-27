@@ -13,6 +13,13 @@
     <%= form.label :profile_image, 'Profile Image' %>
     <%= form.file_field :profile_image, accept: 'image/*' %>
   </div>
+  <label>
+    <%= form.check_box :remove_profile_image %>
+      Remove profile_image
+  </label>
+
+
+
 	<div>
     <%= form.submit %>
   </div>
